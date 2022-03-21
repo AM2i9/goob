@@ -48,8 +48,8 @@ def run_game():
         good_guy.move(x, y)
         bad_guy.move(x, y)
 
-        box_1.fill((0, 0, 255))
-        box_2.fill((255, 0, 0))
+        box_1.fill((64, 77, 88))
+        box_2.fill((88, 64, 64))
 
         good_guy.draw()
         bad_guy.draw()
