@@ -17,3 +17,6 @@ https://opengameart.org/content/music-puzzle
 - Background music/sound effects
 - visual improvements, better sprites and backgrounds
 - start/pause menu (some settings)
+
+# Credits:
+- Spike animation: https://opengameart.org/content/spikes-0

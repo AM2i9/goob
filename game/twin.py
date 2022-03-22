@@ -13,6 +13,8 @@ class Twin(pygame.sprite.Sprite):
 
         self.mask = pygame.mask.from_surface(self.surface)
 
+        self.is_dead = False
+
     def move(self, x, y):
         self._limit(self.box.get_rect())
         self.rect.move_ip(x, 0)
@@ -50,6 +52,9 @@ class Twin(pygame.sprite.Sprite):
             self.rect.y = rect.bottom
 
         return self.rect.clamp(rect)
+    
+    def kill(self):
+        self.is_dead = True
     
     def draw(self):
         self.box.blit(self.surface, self._limit(self.box.get_rect()))

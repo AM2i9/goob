@@ -14,6 +14,16 @@ class Trap(pygame.sprite.Sprite):
         self.rect.update(left, top, width, height)
         self.trigger = trigger
         self.trigger.add_to_object(self)
+
+        self.shown = False
     
     def active(self):...
     def inactive(self):...
+    def kill_sprite(self, sprite):...
+
+    def check_collision(self, sprite):
+        if pygame.sprite.collide_rect(self, sprite):
+            self.kill_sprite(sprite)
+
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)

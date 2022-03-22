@@ -1,9 +1,10 @@
 import pygame
 from pygame.locals import *
+from game.level import Level
 
 from game.room import Room
+from game.triggers.button import Button
 from game.twin import Twin
-from game.triggers.trigger import Trigger
 from game.traps.spike import SpikeTrap
 
 def run_game():
@@ -12,19 +13,35 @@ def run_game():
     win = pygame.display.set_mode(size=(1280, 720))
     clock = pygame.time.Clock()
 
-    box_1 = Room(595, 660, 30, 30)
-    box_2 = Room(595, 660, 655, 30)
+    room_1 = Room(595, 660, 30, 30, "assets/test_map.png")
+    room_2 = Room(595, 660, 655, 30, "assets/test_map_2.png", sprite_startpoint=(261, 282))
 
-    good_guy = Twin(box_1)
-    bad_guy = Twin(box_2)
+    good_guy = Twin(room_1)
+    bad_guy = Twin(room_2)
+
+    button = Button(111, 200, 44, 44)
+    room_1.add_trap(
+        SpikeTrap(111, 200, trigger=button)
+    )
+    room_2.add_trigger(button)
+
+    button2 = Button(412, 275, 44, 44)
+    room_1.add_trap(
+        SpikeTrap(412, 375, trigger=button2)
+    )
+    room_2.add_trigger(button2)
+
+    level = Level(0, room_1, room_2)
 
     x = 0
     y = 0
 
-    good_guy.move((box_1.get_width() // 2) - 15, (box_1.get_height() // 2) - 15)
-    bad_guy.move((box_2.get_width() // 2) - 15, (box_2.get_height() // 2) - 15)
-
+    print(level.to_dict())
+    level.reset(good_guy, bad_guy)
     while True:
+        if good_guy.is_dead or bad_guy.is_dead:
+            level.reset(good_guy, bad_guy)
+            clock
         
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -50,14 +67,7 @@ def run_game():
         good_guy.move(x, y)
         bad_guy.move(x, y)
 
-        box_1.fill((64, 77, 88))
-        box_2.fill((88, 64, 64))
-
-        good_guy.draw()
-        bad_guy.draw()
-
-        box_1.draw(win)
-        box_2.draw(win)
+        level.draw(win, good_guy, bad_guy)
 
         pygame.display.update()
 
