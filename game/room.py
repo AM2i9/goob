@@ -1,6 +1,5 @@
 from typing import Tuple
 import pygame
-from pygame.locals import SRCALPHA
 
 class Room(pygame.Surface):
 
