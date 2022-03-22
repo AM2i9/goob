@@ -9,7 +9,7 @@ class Room(pygame.Surface):
         self.rect = self.get_rect()
         self.rect.update(left, top, width, height)
         
-        self.wallmask = pygame.mask.from_surface(pygame.image.load("assets/test_map.png"))
+        self.wallmask = pygame.mask.from_surface(pygame.image.load("assets/test_map_2.png"))
         self.walls = self.wallmask.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 255, 255, 150))
 
     def draw(self, win):
