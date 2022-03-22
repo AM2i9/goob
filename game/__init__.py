@@ -1,8 +1,10 @@
 import pygame
 from pygame.locals import *
-from game.room import Room
 
+from game.room import Room
 from game.twin import Twin
+from game.triggers.trigger import Trigger
+from game.traps.spike import SpikeTrap
 
 def run_game():
     pygame.init()
