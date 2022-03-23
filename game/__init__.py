@@ -27,7 +27,7 @@ def run_game():
     level = Level(0, room_1, room_2)
 
     good_guy = Twin(level.room_1)
-    bad_guy = Twin(level.room_2)
+    bad_guy = Twin(level.room_2, True)
 
     x = 0
     y = 0

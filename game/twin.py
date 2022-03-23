@@ -4,18 +4,26 @@ import game
 
 class Twin(pygame.sprite.Sprite):
 
-    def __init__(self, box):
+    def __init__(self, box, blue: bool = False):
         pygame.sprite.Sprite.__init__(self)
 
         self.spritesheet = pygame.transform.scale(pygame.image.load("assets/slime_monster_spritesheet.png").convert_alpha(), (72*2, 72*2))
 
-        self.image = self.spritesheet.subsurface(pygame.Rect(0, 24*4, 24*2, 24*2))
+        if blue:
+            w, h = self.spritesheet.get_size()
+            for r in range(w):
+                for c in range(h):
+                    color = self.spritesheet.get_at((r, c))
+                    if color[3] > 0:
+                        self.spritesheet.set_at((r, c), (color[2], color[1], color[0], 255))
 
         self.frames = [
             *(self.spritesheet.subsurface(pygame.Rect(24 * (2 * r), 0, 24*2, 24*2))for r in range(3)),
             *(self.spritesheet.subsurface(pygame.Rect(24 * (2 * r), 24*2, 24*2, 24*2))for r in range(3)),
             *(self.spritesheet.subsurface(pygame.Rect(24 * (2 * r), 24*4, 24*2, 24*2))for r in range(3))
         ]
+
+        self.image = self.frames[0]
 
         self.animations = {
             "idle_front": (6, 6, 7, 7, 7, 7, 6, 6,),
