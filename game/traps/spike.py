@@ -3,8 +3,8 @@ from game.traps.trap import Trap
 
 class SpikeTrap(Trap):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, 23 * 2, 23 * 2, **kwargs)
+    def __init__(self, left, top, *args, **kwargs):
+        super().__init__(left, top, 23 * 2, 23 * 2, **kwargs)
         self.animation = pygame.transform.scale(pygame.image.load("assets/spike-animation.png").convert_alpha(), (125*2, 21*2))
 
         self.frames = [

@@ -3,5 +3,5 @@ from game.triggers.trigger import Trigger
 
 class Button(Trigger):
     
-    def __init__(self, *args):
-        super().__init__(*args, visible=True)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args)

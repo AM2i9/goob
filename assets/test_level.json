@@ -1,0 +1,54 @@
+{
+    "id": 0,
+    "room_1": {
+        "sprite_startpoint": [
+            282,
+            315
+        ],
+        "walls": "assets/test_map.png",
+        "traps": [
+            {
+                "type": "SpikeTrap",
+                "left": 111,
+                "top": 200,
+                "width": 46,
+                "height": 46,
+                "shown_default": true,
+                "trigger": {
+                    "type": "Button",
+                    "in_room": false,
+                    "left": 111,
+                    "top": 200,
+                    "width": 44,
+                    "height": 44,
+                    "visible_default": true
+                }
+            },
+            {
+                "type": "SpikeTrap",
+                "left": 412,
+                "top": 375,
+                "width": 46,
+                "height": 46,
+                "shown_default": true,
+                "trigger": {
+                    "type": "Button",
+                    "in_room": false,
+                    "left": 412,
+                    "top": 275,
+                    "width": 44,
+                    "height": 44,
+                    "visible_default": true
+                }
+            }
+        ]
+    },
+    "room_2": {
+        "sprite_startpoint": [
+            261,
+            282
+        ],
+        "walls": "assets/test_map_2.png",
+        "traps": []
+    }
+}

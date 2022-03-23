@@ -2,10 +2,10 @@ import pygame
 
 class Room(pygame.Surface):
 
-    def __init__(self, width: int, height: int, left: int, top: int, walls: str, sprite_startpoint = None):
-        pygame.Surface.__init__(self, (width, height))
+    def __init__(self, id: int, walls: str, sprite_startpoint = None):
+        pygame.Surface.__init__(self, (595, 660))
         self.rect = self.get_rect()
-        self.rect.update(left, top, width, height)
+        self.rect.update((30 if id == 0 else 655, 30), (595, 660))
         
         self.walls_file = walls
         self.wallmask = pygame.mask.from_surface(pygame.image.load(walls))
@@ -74,3 +74,12 @@ class Room(pygame.Surface):
             } for trap in self.traps
         ]
         return data
+    
+    @classmethod
+    def from_dict(cls, data, id):
+        return cls(
+            id=id,
+            walls=data["walls"],
+            sprite_startpoint=data["sprite_startpoint"]
+        )
+

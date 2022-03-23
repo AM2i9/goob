@@ -1,3 +1,5 @@
+import json
+
 import pygame
 from pygame.locals import *
 from game.level import Level
@@ -13,25 +15,17 @@ def run_game():
     win = pygame.display.set_mode(size=(1280, 720))
     clock = pygame.time.Clock()
 
-    room_1 = Room(595, 660, 30, 30, "assets/test_map.png")
-    room_2 = Room(595, 660, 655, 30, "assets/test_map_2.png", sprite_startpoint=(261, 282))
+    room_1 = Room(0, "assets/level0/level0_0.png")
+    room_2 = Room(1, "assets/level0/level0_1.png")
 
-    good_guy = Twin(room_1)
-    bad_guy = Twin(room_2)
-
-    button = Button(111, 200, 44, 44)
-    room_1.add_trap(
-        SpikeTrap(111, 200, trigger=button)
-    )
+    button = Button(272, 525, 44, 44, True)
+    room_1.add_trap(SpikeTrap(272, 525, trigger=button))
     room_2.add_trigger(button)
 
-    button2 = Button(412, 275, 44, 44)
-    room_1.add_trap(
-        SpikeTrap(412, 375, trigger=button2)
-    )
-    room_2.add_trigger(button2)
-
     level = Level(0, room_1, room_2)
+
+    good_guy = Twin(level.room_1)
+    bad_guy = Twin(level.room_2)
 
     x = 0
     y = 0
@@ -39,6 +33,7 @@ def run_game():
     print(level.to_dict())
     level.reset(good_guy, bad_guy)
     while True:
+
         if good_guy.is_dead or bad_guy.is_dead:
             level.reset(good_guy, bad_guy)
             clock
