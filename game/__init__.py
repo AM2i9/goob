@@ -9,6 +9,8 @@ from game.triggers.button import Button
 from game.twin import Twin
 from game.traps.spike import SpikeTrap
 
+SPEED = 5
+
 def run_game():
     pygame.init()
 
@@ -18,7 +20,7 @@ def run_game():
     room_1 = Room(0, "assets/level0/level0_0.png")
     room_2 = Room(1, "assets/level0/level0_1.png")
 
-    button = Button(272, 525, 44, 44, True)
+    button = Button(270, 525, visible=True)
     room_1.add_trap(SpikeTrap(272, 525, trigger=button))
     room_2.add_trigger(button)
 
@@ -36,7 +38,6 @@ def run_game():
 
         if good_guy.is_dead or bad_guy.is_dead:
             level.reset(good_guy, bad_guy)
-            clock
         
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -44,13 +45,13 @@ def run_game():
                 exit()
             elif event.type == KEYDOWN:
                 if event.key == K_RIGHT:
-                    x = 10
+                    x = SPEED
                 elif event.key == K_LEFT:
-                    x = -10
+                    x = -SPEED
                 if event.key == K_UP:
-                    y = -10
+                    y = -SPEED
                 elif event.key == K_DOWN:
-                    y = 10
+                    y = SPEED
             elif event.type == KEYUP:
                 if event.key in (K_RIGHT, K_LEFT):
                     x = 0
