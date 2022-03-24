@@ -1,14 +1,10 @@
-import json
-
 import pygame
 from pygame.locals import *
-from game.level import Level
 
 from game.room import Room
-from game.triggers.button import Button
 from game.twin import Twin
-from game.traps.spike import SpikeTrap
-from game.wall import Wall, WallType
+
+from game.levels import walk_levels
 
 SPEED = 5
 
@@ -22,12 +18,9 @@ def run_game():
     room_1 = Room(0)
     room_2 = Room(1)
 
-    button = Button()
-
-    room_1.set_tile()
-
-    level = Level(0, room_1, room_2)
-
+    levels = walk_levels(room_1, room_2)
+    level = next(levels)
+    
     good_guy = Twin(level.room_1)
     bad_guy = Twin(level.room_2, True)
 
@@ -37,6 +30,14 @@ def run_game():
     level.reset(good_guy, bad_guy)
 
     while True:
+
+        if level.is_over():
+            try:
+                level = next(levels)
+                level.reset(good_guy, bad_guy)
+            except StopIteration:
+                pygame.quit()
+                exit()
 
         if good_guy.is_dead or bad_guy.is_dead:
             level.reset(good_guy, bad_guy)
