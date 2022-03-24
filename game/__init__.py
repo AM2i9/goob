@@ -8,8 +8,10 @@ from game.room import Room
 from game.triggers.button import Button
 from game.twin import Twin
 from game.traps.spike import SpikeTrap
+from game.wall import Wall, WallType
 
 SPEED = 5
+
 
 def run_game():
     pygame.init()
@@ -17,12 +19,12 @@ def run_game():
     win = pygame.display.set_mode(size=(1280, 720))
     clock = pygame.time.Clock()
 
-    room_1 = Room(0, "assets/level0/level0_0.png")
-    room_2 = Room(1, "assets/level0/level0_1.png")
+    room_1 = Room(0)
+    room_2 = Room(1)
 
-    button = Button(270, 525, visible=True)
-    room_1.add_trap(SpikeTrap(272, 525, trigger=button))
-    room_2.add_trigger(button)
+    button = Button()
+
+    room_1.set_tile()
 
     level = Level(0, room_1, room_2)
 
@@ -32,13 +34,13 @@ def run_game():
     x = 0
     y = 0
 
-    print(level.to_dict())
     level.reset(good_guy, bad_guy)
+
     while True:
 
         if good_guy.is_dead or bad_guy.is_dead:
             level.reset(good_guy, bad_guy)
-        
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()

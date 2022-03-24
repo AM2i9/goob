@@ -1,13 +1,17 @@
 import pygame
 
 import game
+from game.wall import Wall
+
 
 class Twin(pygame.sprite.Sprite):
-
     def __init__(self, box, blue: bool = False):
         pygame.sprite.Sprite.__init__(self)
 
-        self.spritesheet = pygame.transform.scale(pygame.image.load("assets/slime_monster_spritesheet.png").convert_alpha(), (72*2, 72*2))
+        self.spritesheet = pygame.transform.scale(
+            pygame.image.load("assets/slime_monster_spritesheet.png").convert_alpha(),
+            (192, 192),
+        )
 
         if blue:
             w, h = self.spritesheet.get_size()
@@ -15,19 +19,48 @@ class Twin(pygame.sprite.Sprite):
                 for c in range(h):
                     color = self.spritesheet.get_at((r, c))
                     if color[3] > 0:
-                        self.spritesheet.set_at((r, c), (color[2], color[1], color[0], 255))
+                        self.spritesheet.set_at(
+                            (r, c), (color[2], color[1], color[0], 255)
+                        )
 
         self.frames = [
-            *(self.spritesheet.subsurface(pygame.Rect(24 * (2 * r), 0, 24*2, 24*2))for r in range(3)),
-            *(self.spritesheet.subsurface(pygame.Rect(24 * (2 * r), 24*2, 24*2, 24*2))for r in range(3)),
-            *(self.spritesheet.subsurface(pygame.Rect(24 * (2 * r), 24*4, 24*2, 24*2))for r in range(3))
+            *(
+                self.spritesheet.subsurface(pygame.Rect(64 * r, 0, 64, 64))
+                for r in range(3)
+            ),
+            *(
+                self.spritesheet.subsurface(pygame.Rect(64 * r, 64, 64, 64))
+                for r in range(3)
+            ),
+            *(
+                self.spritesheet.subsurface(pygame.Rect(64 * r, 64 * 2, 64, 64))
+                for r in range(3)
+            ),
         ]
 
         self.image = self.frames[0]
 
         self.animations = {
-            "idle_front": (6, 6, 7, 7, 7, 7, 6, 6,),
-            "idle_back": (0, 0, 1, 1, 1, 1, 0, 0, ),
+            "idle_front": (
+                6,
+                6,
+                7,
+                7,
+                7,
+                7,
+                6,
+                6,
+            ),
+            "idle_back": (
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+            ),
             "idle_side": (3, 3, 4, 4, 4, 4, 3, 3),
             "walk_front": (6, 6, 7, 7, 8, 8),
             "walk_back": (0, 0, 1, 1, 2, 2),
@@ -37,6 +70,9 @@ class Twin(pygame.sprite.Sprite):
         self.dir = 0
 
         self.rect = self.image.get_rect()
+        self.hitbox = pygame.Rect(
+            self.rect.x, self.rect.y, self.rect.width // 2, self.rect.height // 2
+        )
 
         self.box = box
 
@@ -44,18 +80,23 @@ class Twin(pygame.sprite.Sprite):
 
         self.is_dead = False
 
-        self.animate_state = 0;
-        self.animation = "idle_front";
+        self.animate_state = 0
+        self.animation = "idle_front"
 
     def move(self, x, y):
-        self._limit(self.box.get_rect())
         self.rect.move_ip(x, 0)
-        self.mask = pygame.mask.from_surface(self.image)
-        self.check_x_collision(x)
+        for row in self.box.tiles:
+            for tile in row:
+                if isinstance(tile, Wall):
+                    self.check_x_collision(tile, x)
 
         self.rect.move_ip(0, y)
-        self.mask = pygame.mask.from_surface(self.image)
-        self.check_y_collision(y)
+        for row in self.box.tiles:
+            for tile in row:
+                if isinstance(tile, Wall):
+                    self.check_y_collision(tile, y)
+        
+        self._limit(self.box.get_rect())
 
         if y > 0:
             self.dir = 0
@@ -76,23 +117,25 @@ class Twin(pygame.sprite.Sprite):
                 self.animation = "idle_side"
             elif self.dir == 3:
                 self.animation = "idle_back"
-    
-    def check_x_collision(self, x_speed):
 
-        col = self.box.wallmask.overlap_mask(self.mask, (self.rect.x, self.rect.y))
-        col_rect = col.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 0, 255)).get_bounding_rect()
+    def check_x_collision(self, tile, x_speed):
+        col = tile.mask.overlap_mask(self.mask, (self.rect.x-tile.rect.x, self.rect.y-tile.rect.y))
+        col_rect = col.to_surface(
+            unsetcolor=(0, 0, 0, 0), setcolor=(255, 0, 255)
+        ).get_bounding_rect()
         dx = col_rect.width
         if dx > 0:
-            self.rect.centerx -= dx * (x_speed/game.SPEED)
+            self.rect.centerx -= dx * (x_speed / game.SPEED)
 
-    def check_y_collision(self, y_speed):
-        col = self.box.wallmask.overlap_mask(self.mask, (self.rect.x, self.rect.y))
-        col_rect = col.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 0, 255)).get_bounding_rect()
+    def check_y_collision(self, tile, y_speed):
+        col = tile.mask.overlap_mask(self.mask, (self.rect.x-tile.rect.x, self.rect.y-tile.rect.y))
+        col_rect = col.to_surface(
+            unsetcolor=(0, 0, 0, 0), setcolor=(255, 0, 255)
+        ).get_bounding_rect()
         dy = col_rect.height
-
         if dy > 0:
-            self.rect.centery -= dy * (y_speed/game.SPEED)
-    
+            self.rect.centery -= dy * (y_speed / game.SPEED)
+
     def _limit(self, rect):
         if self.rect.x < rect.left:
             self.rect.x = rect.left
@@ -104,10 +147,10 @@ class Twin(pygame.sprite.Sprite):
             self.rect.y = rect.bottom
 
         return self.rect.clamp(rect)
-    
+
     def kill(self):
         self.is_dead = True
-    
+
     def draw(self):
 
         if self.animate_state < len(self.animations[self.animation]) - 1:
@@ -119,5 +162,12 @@ class Twin(pygame.sprite.Sprite):
 
         if self.dir == 2:
             self.image = pygame.transform.flip(self.image, True, False)
+
+        self.hitbox.update(
+            self.rect.x + self.image.get_width() // 4,
+            self.rect.y + self.image.get_height() // 4,
+            self.image.get_width() // 2,
+            self.image.get_height() // 2,
+        )
 
         self.box.blit(self.image, self._limit(self.box.get_rect()))

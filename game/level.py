@@ -5,6 +5,7 @@ from game.room import Room
 from game.traps import TRAPS
 from game.triggers import TRIGGERS
 
+
 @dataclass
 class Level:
 
@@ -14,8 +15,12 @@ class Level:
     room_2: Room
 
     def reset(self, good_twin, evil_twin):
-        good_twin.rect.update(*self.room_1.sprite_startpoint, good_twin.rect.width, good_twin.rect.height)
-        evil_twin.rect.update(*self.room_2.sprite_startpoint, evil_twin.rect.width, evil_twin.rect.height)
+        good_twin.rect.update(
+            *self.room_1.sprite_startpoint, good_twin.rect.width, good_twin.rect.height
+        )
+        evil_twin.rect.update(
+            *self.room_2.sprite_startpoint, evil_twin.rect.width, evil_twin.rect.height
+        )
         good_twin.is_dead = False
         evil_twin.is_dead = False
 
@@ -37,7 +42,7 @@ class Level:
     def from_dict(cls, data):
         room_1 = Room.from_dict(data["room_1"], 0)
         room_2 = Room.from_dict(data["room_2"], 1)
-        
+
         for trap in data["room_1"]["traps"]:
             trap_trig = TRIGGERS.get(trap["trigger"]["type"])(
                 trap["trigger"]["left"],
@@ -59,7 +64,7 @@ class Level:
                 room_1.add_trigger(trap_trig)
             else:
                 room_2.add_trigger(trap_trig)
-            
+
             room_1.add_trap(trap_obj)
 
         for trap in data["room_2"]["traps"]:
@@ -83,7 +88,7 @@ class Level:
                 room_2.add_trigger(trap_trig)
             else:
                 room_1.add_trigger(trap_trig)
-            
+
             room_2.add_trap(trap_obj)
 
         return cls(
@@ -91,4 +96,3 @@ class Level:
             room_1=room_1,
             room_2=room_2,
         )
-        
