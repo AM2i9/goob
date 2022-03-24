@@ -12,7 +12,7 @@ class Room(pygame.Surface):
         self.rect = self.get_rect()
         self.rect.update((32 + 16 if id == 0 else 640 + 16, 32), (576, 640))
 
-        self.tiles = [[None for _ in range(576 // 64)] for _ in range(576 // 64)]
+        self.tiles = [[None for _ in range(640 // 64)] for _ in range(576 // 64)]
 
         if sprite_startpoint is None:
             self.sprite_startpoint = (
