@@ -64,6 +64,9 @@ def run_game():
                     y = -SPEED
                 elif event.key == K_DOWN:
                     y = SPEED
+                elif event.key == K_ESCAPE:
+                    Menu().show(win)
+                    continue
             elif event.type == KEYUP:
                 if event.key in (K_RIGHT, K_LEFT):
                     x = 0
