@@ -15,6 +15,9 @@ def run_game():
     win = pygame.display.set_mode(size=(1280, 720))
     clock = pygame.time.Clock()
 
+    pygame.mixer.music.load("assets/music/sb_sundaysmooth.mp3")
+    pygame.mixer.music.play(loops=-1)
+
     room_1 = Room(0)
     room_2 = Room(1)
 
