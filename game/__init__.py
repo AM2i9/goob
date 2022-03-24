@@ -3,6 +3,7 @@ from pygame.locals import *
 
 from game.room import Room
 from game.twin import Twin
+from game.menu import Menu
 
 from game.levels import walk_levels, get_level
 
@@ -16,6 +17,7 @@ def run_game():
     clock = pygame.time.Clock()
 
     pygame.mixer.music.load("assets/music/sb_sundaysmooth.mp3")
+    pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1)
 
     room_1 = Room(0)
@@ -31,6 +33,8 @@ def run_game():
     y = 0
 
     level.reset(good_guy, bad_guy)
+
+    Menu().show(win)
 
     while True:
 
