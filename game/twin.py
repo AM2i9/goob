@@ -165,7 +165,6 @@ class Twin(pygame.sprite.Sprite):
 
         if self.dead:
             self.animate_state = 0
-            print(self.death_anim_state)
 
             if self.death_anim_state == 1:
                 self.death_sound.play()
