@@ -32,11 +32,7 @@ class Wall(pygame.sprite.Sprite):
 
         self.image = WallType.get_wall(type)
         self.rect = self.image.get_rect()
-        self.update(64 * 2, 64 * 2)
         self.mask = pygame.mask.from_surface(self.image)
-        
-    def update(self, x, y):
-        self.rect.update(x, y, self.rect.width, self.rect.height)
     
     def draw(self, surface):
         surface.blit(self.image, self.rect)

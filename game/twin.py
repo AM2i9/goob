@@ -95,8 +95,6 @@ class Twin(pygame.sprite.Sprite):
             for tile in row:
                 if isinstance(tile, Wall):
                     self.check_y_collision(tile, y)
-        
-        self._limit(self.box.get_rect())
 
         if y > 0:
             self.dir = 0
