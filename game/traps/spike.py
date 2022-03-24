@@ -17,7 +17,7 @@ class SpikeTrap(Trap):
             self.animation.subsurface(pygame.Rect(29 + (64 * 3), 0, 64, 64)),
         ]
 
-        self.image = self.frames[1]
+        self.image = self.frames[0]
 
         self.shown = True
         self.state = 0

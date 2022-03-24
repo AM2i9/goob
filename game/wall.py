@@ -16,13 +16,19 @@ class WallType:
     VERTICAL_TOP_END = 12
     HORIZONTAL_RIGHT_END = 13
     VERTICAL_BOTTOM_END = 14
+    SINGLE = 15
 
     @staticmethod
     def get_wall(type: int):
         walls_raw = pygame.transform.scale(
             pygame.image.load("assets/walls.png").convert_alpha(), (960, 64)
         )
-    
+
+        if type == WallType.SINGLE:
+            return pygame.transform.scale(
+                pygame.image.load("assets/default_tiles_x.png").convert_alpha(), (512, 128)
+            ).subsurface((64, 0, 64, 64))
+            
         return walls_raw.subsurface((64 * type, 0, 64, 64))
 
 

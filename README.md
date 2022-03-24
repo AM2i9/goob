@@ -30,6 +30,6 @@ objects
 - Spike animation: https://opengameart.org/content/spikes-0
 - Button animation: https://opengameart.org/content/button-animation-colorful-vector
 - Characers: https://opengameart.org/content/slime-monster-24x24, pubished under https://creativecommons.org/licenses/by/4.0/
-- Floor tiles: https://opengameart.org/content/simple-tileset
 - Wall tiles: https://opengameart.org/content/wall-tiles
+- Also a wall tile: https://opengameart.org/content/simple-tileset
 - Coin: https://opengameart.org/content/rotating-coin

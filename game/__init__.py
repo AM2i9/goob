@@ -4,7 +4,7 @@ from pygame.locals import *
 from game.room import Room
 from game.twin import Twin
 
-from game.levels import walk_levels
+from game.levels import walk_levels, get_level
 
 SPEED = 5
 
@@ -33,6 +33,8 @@ def run_game():
 
         if level.is_over():
             try:
+                room_1.clear()
+                room_2.clear()
                 level = next(levels)
                 level.reset(good_guy, bad_guy)
             except StopIteration:

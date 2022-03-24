@@ -12,13 +12,18 @@ class Room(pygame.Surface):
         self.rect = self.get_rect()
         self.rect.update((48 if id == 0 else 656, 32), (576, 640))
 
-        self.tiles = [[None for _ in range(640 // 64)] for _ in range(576 // 64)]
+        self.tiles = []
+        self.clear()
 
-        if sprite_startpoint is None:
-            self.sprite_startpoint = (
+        if sprite_startpoint:
+            self.sprite_startpoint = sprite_startpoint
+    
+    def clear(self):
+        self.sprite_startpoint = (
                 (self.get_width() // 2) - 32,
                 (self.get_height() // 2) - 32,
             )
+        self.tiles = [[None for _ in range(640 // 64)] for _ in range(576 // 64)]
 
     def set_tile(self, x, y, tile):
         self.tiles[x][y] = tile

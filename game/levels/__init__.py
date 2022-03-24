@@ -9,3 +9,6 @@ def walk_levels(room_1, room_2):
 
         level = importlib.import_module(module.name)
         yield level.build_level(room_1, room_2)
+
+def get_level(id, room_1, room_2):
+    return importlib.import_module(f"{game.levels.__name__}.{id}").build_level(room_1, room_2)

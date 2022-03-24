@@ -25,8 +25,8 @@ def build_level(room_1, room_2):
     room_1.set_tile(6, 5, Wall(WallType.VERTICAL))
 
     room_1.set_tile(2, 6, Wall(WallType.UR_LJUNCT))
-    room_1.set_tile(3, 6, Wall(WallType.HORIZTONAL_RIGHT_END))
-    room_1.set_tile(5, 6, Wall(WallType.HORIZTONAL_LEFT_END))
+    room_1.set_tile(3, 6, Wall(WallType.HORIZONTAL_RIGHT_END))
+    room_1.set_tile(5, 6, Wall(WallType.HORIZONTAL_LEFT_END))
     room_1.set_tile(6, 6, Wall(WallType.UL_LJUNCT))
 
 
@@ -41,12 +41,12 @@ def build_level(room_1, room_2):
     room_2.set_tile(2, 5, Wall(WallType.VERTICAL))
     room_2.set_tile(6, 3, Wall(WallType.VERTICAL))
     room_2.set_tile(6, 4, Wall(WallType.L_TJUNCT))
-    room_2.set_tile(5, 4, Wall(WallType.HORIZTONAL_LEFT_END))
+    room_2.set_tile(5, 4, Wall(WallType.HORIZONTAL_LEFT_END))
     room_2.set_tile(6, 5, Wall(WallType.VERTICAL))
 
     room_2.set_tile(2, 6, Wall(WallType.UR_LJUNCT))
-    room_2.set_tile(3, 6, Wall(WallType.HORIZTONAL_RIGHT_END))
-    room_2.set_tile(5, 6, Wall(WallType.HORIZTONAL_LEFT_END))
+    room_2.set_tile(3, 6, Wall(WallType.HORIZONTAL_RIGHT_END))
+    room_2.set_tile(5, 6, Wall(WallType.HORIZONTAL_LEFT_END))
     room_2.set_tile(6, 6, Wall(WallType.UL_LJUNCT))
 
     room_1.set_tile(4, 6, SpikeTrap(trigger=button))
