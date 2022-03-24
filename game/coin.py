@@ -15,20 +15,26 @@ class Coin:
 
         self.rect = self.image.get_rect()
         self.state = 0
+        self.pos_state = 0
 
         self.triggered = False
     
     def check_collision(self, sprite):
-        self.triggered = self.rect.colliderect(sprite.rect)
+        if self.rect.colliderect(sprite.rect):
+            self.triggered = True
     
     def is_triggered(self):
-        return self.triggered
+        return self.triggered and self.pos_state > 25
 
     def draw(self, surface):
         if self.state < 7:
             self.state += 1
         else:
             self.state = 0
+
+        if self.triggered:
+            self.rect.move_ip(0, 0.25 * (self.pos_state - 10) ** 2 - 25)
+            self.pos_state += 1
         
         self.image = self.frames[self.state]
 
