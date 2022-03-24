@@ -44,7 +44,7 @@ def run_game():
                 pygame.quit()
                 exit()
 
-        if good_guy.is_dead or bad_guy.is_dead:
+        if good_guy.is_dead() or bad_guy.is_dead():
             level.reset(good_guy, bad_guy)
 
         for event in pygame.event.get():

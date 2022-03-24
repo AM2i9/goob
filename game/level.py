@@ -24,8 +24,10 @@ class Level:
         evil_twin.rect.update(
             *self.room_2.sprite_startpoint, evil_twin.rect.width, evil_twin.rect.height
         )
-        good_twin.is_dead = False
-        evil_twin.is_dead = False
+        good_twin.dead = False
+        evil_twin.dead = False
+        good_twin.death_anim_state = 0
+        evil_twin.death_anim_state = 0
 
     def draw(self, win, good_twin, evil_twin):
         self.end_coin.check_collision(good_twin)

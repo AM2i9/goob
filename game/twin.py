@@ -78,43 +78,45 @@ class Twin(pygame.sprite.Sprite):
 
         self.mask = pygame.mask.from_surface(self.image)
 
-        self.is_dead = False
+        self.dead = False
+        self.death_anim_state = 0
 
         self.animate_state = 0
         self.animation = "idle_front"
 
     def move(self, x, y):
-        self.rect.move_ip(x, 0)
-        for row in self.box.tiles:
-            for tile in row:
-                if isinstance(tile, Wall):
-                    self.check_x_collision(tile, x)
+        if not self.dead:
+            self.rect.move_ip(x, 0)
+            for row in self.box.tiles:
+                for tile in row:
+                    if isinstance(tile, Wall):
+                        self.check_x_collision(tile, x)
 
-        self.rect.move_ip(0, y)
-        for row in self.box.tiles:
-            for tile in row:
-                if isinstance(tile, Wall):
-                    self.check_y_collision(tile, y)
+            self.rect.move_ip(0, y)
+            for row in self.box.tiles:
+                for tile in row:
+                    if isinstance(tile, Wall):
+                        self.check_y_collision(tile, y)
 
-        if y > 0:
-            self.dir = 0
-            self.animation = "walk_front"
-        elif y < 0:
-            self.dir = 3
-            self.animation = "walk_back"
-        elif x > 0:
-            self.dir = 1
-            self.animation = "walk_side"
-        elif x < 0:
-            self.dir = 2
-            self.animation = "walk_side"
-        else:
-            if self.dir == 0:
-                self.animation = "idle_front"
-            elif self.dir == 1 or self.dir == 2:
-                self.animation = "idle_side"
-            elif self.dir == 3:
-                self.animation = "idle_back"
+            if y > 0:
+                self.dir = 0
+                self.animation = "walk_front"
+            elif y < 0:
+                self.dir = 3
+                self.animation = "walk_back"
+            elif x > 0:
+                self.dir = 1
+                self.animation = "walk_side"
+            elif x < 0:
+                self.dir = 2
+                self.animation = "walk_side"
+            else:
+                if self.dir == 0:
+                    self.animation = "idle_front"
+                elif self.dir == 1 or self.dir == 2:
+                    self.animation = "idle_side"
+                elif self.dir == 3:
+                    self.animation = "idle_back"
 
     def check_x_collision(self, tile, x_speed):
         col = tile.mask.overlap_mask(self.mask, (self.rect.x-tile.rect.x, self.rect.y-tile.rect.y))
@@ -147,7 +149,11 @@ class Twin(pygame.sprite.Sprite):
         return self.rect.clamp(rect)
 
     def kill(self):
-        self.is_dead = True
+        self.dead = True
+
+    def is_dead(self) -> bool:
+
+        return self.dead and self.death_anim_state > 25
 
     def draw(self):
 
@@ -155,6 +161,10 @@ class Twin(pygame.sprite.Sprite):
             self.animate_state += 1
         else:
             self.animate_state = 0
+
+        if self.dead:
+            self.animate_state = 0
+            self.death_anim_state += 1
 
         self.image = self.frames[self.animations[self.animation][self.animate_state]]
 
