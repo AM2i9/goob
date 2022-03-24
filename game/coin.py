@@ -18,6 +18,9 @@ class Coin:
         self.pos_state = 0
 
         self.triggered = False
+
+        self.collect_sound = pygame.mixer.Sound("assets/sounds/sfx_health.ogg")
+        self.collect_sound.set_volume(0.6)
     
     def check_collision(self, sprite):
         if self.rect.colliderect(sprite.rect):
@@ -33,6 +36,8 @@ class Coin:
             self.state = 0
 
         if self.triggered:
+            if self.pos_state == 1:
+                self.collect_sound.play()
             self.rect.move_ip(0, 0.25 * (self.pos_state - 10) ** 2 - 25)
             self.pos_state += 1
         

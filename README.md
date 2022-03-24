@@ -13,4 +13,8 @@ My entry for pyweek 33
 - Wall tiles: https://opengameart.org/content/wall-tiles
 - Also a wall tile: https://opengameart.org/content/simple-tileset
 - Coin: https://opengameart.org/content/rotating-coin
+
 - Background Music: [Sunday Smooth](https://www.scottbuckley.com.au/library/sunday-smooth/) by Scott Buckley – www.scottbuckley.com.au
+
+- Sound effects: hosch - https://hosch.itch.io |
+https://opengameart.org/content/8-bit-sound-effects-2

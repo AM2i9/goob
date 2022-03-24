@@ -26,8 +26,6 @@ class Level:
         )
         good_twin.dead = False
         evil_twin.dead = False
-        good_twin.death_anim_state = 0
-        evil_twin.death_anim_state = 0
 
     def draw(self, win, good_twin, evil_twin):
         self.end_coin.check_collision(good_twin)

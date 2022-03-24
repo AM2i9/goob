@@ -84,6 +84,8 @@ class Twin(pygame.sprite.Sprite):
         self.animate_state = 0
         self.animation = "idle_front"
 
+        self.death_sound = pygame.mixer.Sound("assets/sounds/sfx_explosionGoo.ogg")
+
     def move(self, x, y):
         if not self.dead:
             self.rect.move_ip(x, 0)
@@ -152,7 +154,6 @@ class Twin(pygame.sprite.Sprite):
         self.dead = True
 
     def is_dead(self) -> bool:
-
         return self.dead and self.death_anim_state > 25
 
     def draw(self):
@@ -164,7 +165,14 @@ class Twin(pygame.sprite.Sprite):
 
         if self.dead:
             self.animate_state = 0
+            print(self.death_anim_state)
+
+            if self.death_anim_state == 1:
+                self.death_sound.play()
+
             self.death_anim_state += 1
+        else:
+            self.death_anim_state = 0
 
         self.image = self.frames[self.animations[self.animation][self.animate_state]]
 

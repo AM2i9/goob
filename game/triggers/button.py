@@ -19,14 +19,20 @@ class Button(Trigger):
         self.rect = self.image.get_rect()
         self.state = 0
 
+        self.sound = pygame.mixer.Sound("assets/sounds/sfx_death.ogg")
+
     def triggered(self):
         if self.state < 4:
+            if self.state == 1:
+                self.sound.play()
             self.state += 1
             self.image = self.frames[self.state]
         super().triggered()
 
     def untriggered(self):
         if self.state > 0:
+            if self.state == 3:
+                self.sound.play()
             self.state -= 1
             self.image = self.frames[self.state]
         super().untriggered()
