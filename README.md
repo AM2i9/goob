@@ -1,36 +1,16 @@
 My entry for pyweek 33
 
-**resources**:
-https://opengameart.org/
-https://kenney.nl/
-
-
-music i like
-https://opengameart.org/content/gray-trip
-https://opengameart.org/content/music-puzzle
-
 # TODO:
--[ ] *Traps*
--[ ] *Buttons*
--[ ] *Goals/exits*
--[ ] *Different maps*
--[ ] Background music/sound effects
--[ ] *visual improvements, better sprites and backgrounds*
--[ ] start/pause menu (some settings)
-
-**Everything should be tiled**
-objects
- - traps
- - triggers
- - wall
-   - Collisions, texture
- - coin
+- [ ] MORE Traps
+- [ ] MORE Buttons
+- [ ] MORE LEVES
+- [ ] start/pause menu (some settings)
 
 # Credits:
-- Spike animation: https://opengameart.org/content/spikes-0
-- Button animation: https://opengameart.org/content/button-animation-colorful-vector
-- Characers: https://opengameart.org/content/slime-monster-24x24, pubished under https://creativecommons.org/licenses/by/4.0/
+- Spikes: https://opengameart.org/content/spikes-0
+- Button: https://opengameart.org/content/button-animation-colorful-vector
+- Slime monster: https://opengameart.org/content/slime-monster-24x24
 - Wall tiles: https://opengameart.org/content/wall-tiles
 - Also a wall tile: https://opengameart.org/content/simple-tileset
 - Coin: https://opengameart.org/content/rotating-coin
-- Background Music: Sunday Smooth by Scott Buckley – www.scottbuckley.com.au
+- Background Music: [Sunday Smooth](https://www.scottbuckley.com.au/library/sunday-smooth/) by Scott Buckley – www.scottbuckley.com.au
