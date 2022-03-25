@@ -7,7 +7,7 @@ from game.wall import Wall, WallType
 
 def build_level(room_1, room_2):
 
-    level = Level(0, room_1, room_2, end_coin=Coin())
+    level = Level(2, room_1, room_2, end_coin=Coin())
 
     button = Button()
     button_2 = Button()
