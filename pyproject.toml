@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "Pyweek33"
+name = "Goob"
 version = "0.1.0"
 description = ""
 authors = ["Patrick Brennan (AM2i9)"]

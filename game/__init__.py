@@ -16,6 +16,8 @@ def run_game():
     win = pygame.display.set_mode(size=(1280, 720))
     clock = pygame.time.Clock()
 
+    pygame.display.set_caption("Goob")
+
     pygame.mixer.music.load("assets/music/sb_sundaysmooth.mp3")
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1)

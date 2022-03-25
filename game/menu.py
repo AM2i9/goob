@@ -12,7 +12,7 @@ class Menu(pygame.Surface):
 
     def show(self, win):
 
-        title = self.font.render("<Insert Name Here>", 8, (255, 255, 255))
+        title = self.font.render("Goob", 8, (255, 255, 255))
 
         play = pygame.transform.scale(self.font.render("Press ENTER to play", 8, (249, 240, 107)), (512, 48))
 
@@ -23,6 +23,8 @@ class Menu(pygame.Surface):
             pygame.image.load("assets/slime_monster_spritesheet.png").convert_alpha(),
             (1536, 1536),
         ).subsurface((0, 512*2, 512, 512))
+
+        pygame.display.set_icon(pygame.transform.scale(slime_thing, (32, 32)))
 
         while True:
 
