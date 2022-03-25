@@ -1,7 +1,8 @@
+from enum import Enum
 import pygame
 
 
-class WallType:
+class WallType(Enum):
     VERTICAL = 0
     HORIZONTAL = 1
     FOURWAY = 2
@@ -20,7 +21,7 @@ class WallType:
     SINGLE = 15
 
     @staticmethod
-    def get_wall(type: int):
+    def get_wall(type: "WallType"):
         walls_raw = pygame.transform.scale(
             pygame.image.load("assets/walls.png").convert_alpha(), (960, 64)
         )
@@ -31,7 +32,7 @@ class WallType:
                 (512, 128),
             ).subsurface((64, 0, 64, 64))
 
-        return walls_raw.subsurface((64 * type, 0, 64, 64))
+        return walls_raw.subsurface((64 * type.value, 0, 64, 64))
 
 
 class Wall(pygame.sprite.Sprite):
