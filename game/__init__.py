@@ -5,7 +5,11 @@ from game.room import Room
 from game.twin import Twin
 from game.menu import Menu
 
-from game.levels import walk_levels, get_level
+from levels import walk_levels, get_level
+
+import game.wall
+import game.coin
+import game.level
 
 SPEED = 5
 
@@ -27,7 +31,8 @@ def run_game():
 
     levels = walk_levels(room_1, room_2)
     level = next(levels)
-    
+    # level = get_level(4, room_1, room_2)
+
     good_guy = Twin(level.room_1)
     bad_guy = Twin(level.room_2, True)
 
@@ -48,7 +53,6 @@ def run_game():
                 level.reset(good_guy, bad_guy)
             except StopIteration:
                 pygame.quit()
-                exit()
 
         if good_guy.is_dead() or bad_guy.is_dead():
             level.reset(good_guy, bad_guy)
