@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 from pygame.locals import *
 
@@ -48,6 +50,7 @@ class Menu(pygame.Surface):
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
+                    sys.exit()
                 if event.type == KEYDOWN:
                     if event.key == K_RETURN:
                         return

@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 from pygame.locals import *
 
@@ -53,6 +55,7 @@ def run_game():
                 level.reset(good_guy, bad_guy)
             except StopIteration:
                 pygame.quit()
+                sys.exit()
 
         if good_guy.is_dead() or bad_guy.is_dead():
             level.reset(good_guy, bad_guy)
@@ -60,6 +63,7 @@ def run_game():
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
+                sys.exit()
             elif event.type == KEYDOWN:
                 if event.key == K_RIGHT:
                     x = SPEED
