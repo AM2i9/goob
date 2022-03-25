@@ -35,6 +35,6 @@ class Level:
 
         self.room_1.draw(win, good_twin)
         self.room_2.draw(win, evil_twin)
-    
+
     def is_over(self) -> bool:
         return self.end_coin.is_triggered()

@@ -121,7 +121,9 @@ class Twin(pygame.sprite.Sprite):
                     self.animation = "idle_back"
 
     def check_x_collision(self, tile, x_speed):
-        col = tile.mask.overlap_mask(self.mask, (self.rect.x-tile.rect.x, self.rect.y-tile.rect.y))
+        col = tile.mask.overlap_mask(
+            self.mask, (self.rect.x - tile.rect.x, self.rect.y - tile.rect.y)
+        )
         col_rect = col.to_surface(
             unsetcolor=(0, 0, 0, 0), setcolor=(255, 0, 255)
         ).get_bounding_rect()
@@ -130,7 +132,9 @@ class Twin(pygame.sprite.Sprite):
             self.rect.centerx -= dx * (x_speed / game.SPEED)
 
     def check_y_collision(self, tile, y_speed):
-        col = tile.mask.overlap_mask(self.mask, (self.rect.x-tile.rect.x, self.rect.y-tile.rect.y))
+        col = tile.mask.overlap_mask(
+            self.mask, (self.rect.x - tile.rect.x, self.rect.y - tile.rect.y)
+        )
         col_rect = col.to_surface(
             unsetcolor=(0, 0, 0, 0), setcolor=(255, 0, 255)
         ).get_bounding_rect()

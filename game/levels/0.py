@@ -29,7 +29,6 @@ def build_level(room_1, room_2):
     room_1.set_tile(5, 6, Wall(WallType.HORIZONTAL_LEFT_END))
     room_1.set_tile(6, 6, Wall(WallType.UL_LJUNCT))
 
-
     room_2.set_tile(2, 2, Wall(WallType.DR_LJUNCT))
     room_2.set_tile(3, 2, Wall(WallType.HORIZONTAL))
     room_2.set_tile(4, 2, Wall(WallType.HORIZONTAL))

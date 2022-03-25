@@ -1,5 +1,6 @@
 import pygame
 
+
 class Coin:
     def __init__(self):
         self.animation = pygame.transform.scale(
@@ -21,11 +22,11 @@ class Coin:
 
         self.collect_sound = pygame.mixer.Sound("assets/sounds/sfx_health.ogg")
         self.collect_sound.set_volume(0.6)
-    
+
     def check_collision(self, sprite):
         if self.rect.colliderect(sprite.rect):
             self.triggered = True
-    
+
     def is_triggered(self):
         return self.triggered and self.pos_state > 25
 
@@ -40,7 +41,7 @@ class Coin:
                 self.collect_sound.play()
             self.rect.move_ip(0, 0.25 * (self.pos_state - 10) ** 2 - 25)
             self.pos_state += 1
-        
+
         self.image = self.frames[self.state]
 
         surface.blit(self.image, self.rect)

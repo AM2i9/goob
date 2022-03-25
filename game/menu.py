@@ -1,8 +1,8 @@
 import pygame
 from pygame.locals import *
 
-class Menu(pygame.Surface):
 
+class Menu(pygame.Surface):
     def __init__(self):
         super().__init__((1280, 720))
 
@@ -14,15 +14,21 @@ class Menu(pygame.Surface):
 
         title = self.font.render("Goob", 8, (255, 255, 255))
 
-        play = pygame.transform.scale(self.font.render("Press ENTER to play", 8, (249, 240, 107)), (512, 48))
+        play = pygame.transform.scale(
+            self.font.render("Press ENTER to play", 8, (249, 240, 107)), (512, 48)
+        )
 
-        info_1 = pygame.transform.scale(self.font.render("https://github.com/AM2i9", 8, (255, 255, 255)), (320, 32))
-        info_2 = pygame.transform.scale(self.font.render("Created for Pyweek 33", 8, (255, 255, 255)), (320, 32))
+        info_1 = pygame.transform.scale(
+            self.font.render("https://github.com/AM2i9", 8, (255, 255, 255)), (320, 32)
+        )
+        info_2 = pygame.transform.scale(
+            self.font.render("Created for Pyweek 33", 8, (255, 255, 255)), (320, 32)
+        )
 
         slime_thing = pygame.transform.scale(
             pygame.image.load("assets/slime_monster_spritesheet.png").convert_alpha(),
             (1536, 1536),
-        ).subsurface((0, 512*2, 512, 512))
+        ).subsurface((0, 512 * 2, 512, 512))
 
         pygame.display.set_icon(pygame.transform.scale(slime_thing, (32, 32)))
 

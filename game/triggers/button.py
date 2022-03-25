@@ -3,7 +3,9 @@ from game.triggers.trigger import Trigger
 
 
 class Button(Trigger):
-    def __init__(self,):
+    def __init__(
+        self,
+    ):
         super().__init__(visible=True)
         self.animation = pygame.transform.scale(
             pygame.image.load("assets/pushthebutton_1.png").convert_alpha(), (320, 126)

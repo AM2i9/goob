@@ -54,7 +54,7 @@ def build_level(room_1, room_2):
     room_2.set_tile(5, 2, Wall(WallType.DR_LJUNCT))
     room_2.set_tile(6, 2, Wall(WallType.HORIZONTAL))
     room_2.set_tile(7, 2, Wall(WallType.DL_LJUNCT))
-    
+
     room_2.set_tile(1, 3, Wall(WallType.DR_LJUNCT))
     room_2.set_tile(2, 3, Wall(WallType.HORIZONTAL))
     room_2.set_tile(3, 3, Wall(WallType.HORIZONTAL))
@@ -85,8 +85,7 @@ def build_level(room_1, room_2):
     room_2.set_tile(5, 7, Wall(WallType.U_TJUNCT))
     room_2.set_tile(6, 7, Wall(WallType.HORIZONTAL))
     room_2.set_tile(7, 7, Wall(WallType.UL_LJUNCT))
-    
-    
+
     room_1.sprite_startpoint = (64 * 6, 64 * 6)
     room_2.sprite_startpoint = (64 * 6, 64 * 6)
 

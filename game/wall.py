@@ -1,5 +1,6 @@
 import pygame
 
+
 class WallType:
     VERTICAL = 0
     HORIZONTAL = 1
@@ -26,9 +27,10 @@ class WallType:
 
         if type == WallType.SINGLE:
             return pygame.transform.scale(
-                pygame.image.load("assets/default_tiles_x.png").convert_alpha(), (512, 128)
+                pygame.image.load("assets/default_tiles_x.png").convert_alpha(),
+                (512, 128),
             ).subsurface((64, 0, 64, 64))
-            
+
         return walls_raw.subsurface((64 * type, 0, 64, 64))
 
 
@@ -39,7 +41,6 @@ class Wall(pygame.sprite.Sprite):
         self.image = WallType.get_wall(type)
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
-    
+
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-

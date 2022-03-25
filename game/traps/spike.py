@@ -27,7 +27,7 @@ class SpikeTrap(Trap):
             self.state += 1
             self.image = self.frames[self.state]
 
-    def inactive(self): 
+    def inactive(self):
         if self.state > 0:
             self.state -= 1
             self.image = self.frames[self.state]
