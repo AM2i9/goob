@@ -25,12 +25,14 @@ class Menu(pygame.Surface):
             self.font.render("Created for Pyweek 33", 8, (255, 255, 255)), (320, 32)
         )
 
-        slime_thing = pygame.transform.scale(
-            pygame.image.load("assets/slime_monster_spritesheet.png").convert_alpha(),
-            (1536, 1536),
-        ).subsurface((0, 512 * 2, 512, 512))
+        slime_thing = pygame.image.load("assets/slime_monster_single.png").convert_alpha()
 
-        pygame.display.set_icon(pygame.transform.scale(slime_thing, (32, 32)))
+        pygame.display.set_icon(slime_thing)
+
+        slime_thing = pygame.transform.scale(
+            slime_thing,
+            (512, 512),
+        )
 
         while True:
 
@@ -46,7 +48,6 @@ class Menu(pygame.Surface):
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
-                    exit()
                 if event.type == KEYDOWN:
                     if event.key == K_RETURN:
                         return

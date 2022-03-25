@@ -60,7 +60,6 @@ def run_game():
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
-                exit()
             elif event.type == KEYDOWN:
                 if event.key == K_RIGHT:
                     x = SPEED
