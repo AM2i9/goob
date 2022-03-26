@@ -16,16 +16,16 @@ More can be found in LICENSE.txt
 Running
 ----------------
 To run, install the dependencies from `requirements.txt`. A venv is recommended.
-```py
-pip install -r requirements.txt
-python run_game.py
-```
+
+$ pip install -r requirements.txt
+$ python run_game.py
+
 
 Or, if you want to, you can use poetry:
-```py
-poetry install --no-dev
-poetry run python run_game.py
-```
+
+$ poetry install --no-dev
+$ poetry run python run_game.py
+
 ---------------
 
 Credits:
