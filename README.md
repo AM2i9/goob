@@ -6,6 +6,20 @@ My entry for Pyweek 33, with the theme **My Evil Twin**.
 
 Help Goob get to the coin in each level, but watch out. Goob's evil blue brother Boog will be trying to stop you with his spike traps.
 
+# Running
+
+To run, install the dependencies from `requirements.txt`. A venv is recommended.
+```py
+pip install -r requirements.txt
+python run_game.py
+```
+
+Or, if you want to, you can use poetry:
+```py
+poetry install --no-dev
+poetry run python run_game.py
+```
+
 # Credits:
 ### Art
 - Spikes: https://opengameart.org/content/spikes-0
