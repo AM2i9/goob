@@ -1,5 +1,6 @@
-<img src="/assets/slime_monster_single.png" align="left">
-# Goob
+
+
+# <img src="/assets/slime_monster_single.png" align="left"> Goob
 
 My entry for Pyweek 33, with the theme **My Evil Twin**.
 
