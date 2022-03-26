@@ -24,7 +24,7 @@ def run_game():
 
     pygame.display.set_caption("Goob")
 
-    pygame.mixer.music.load("assets/music/sb_sundaysmooth.mp3")
+    pygame.mixer.music.load("assets/music/sb_sundaysmooth.ogg")
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1)
 
