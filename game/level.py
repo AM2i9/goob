@@ -1,3 +1,5 @@
+import pygame
+
 from typing import List, Tuple
 from dataclasses import dataclass
 from game.coin import Coin
@@ -17,6 +19,10 @@ class Level:
 
     end_coin: Coin
 
+    def __post_init__(self):
+        self.font = pygame.font.Font("assets/MisterPixelRegular.otf", 64)
+        self.level_num_text = self.font.render(f"{self.id}", 8, (255, 255, 255))
+
     def reset(self, good_twin, evil_twin):
         good_twin.rect.update(
             *self.room_1.sprite_startpoint, good_twin.rect.width, good_twin.rect.height
@@ -35,6 +41,8 @@ class Level:
 
         self.room_1.draw(win, good_twin)
         self.room_2.draw(win, evil_twin)
+
+        win.blit(self.level_num_text, self.level_num_text.get_rect().move(12, 32))
 
     def is_over(self) -> bool:
         return self.end_coin.is_triggered()
