@@ -54,8 +54,8 @@ def run_game():
                 level = next(levels)
                 level.reset(good_guy, bad_guy)
             except StopIteration:
-                pygame.quit()
-                sys.exit()
+                Menu().show(win)
+                levels = walk_levels(room_1, room_2)
 
         if good_guy.is_dead() or bad_guy.is_dead():
             level.reset(good_guy, bad_guy)
